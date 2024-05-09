@@ -3,7 +3,7 @@ FROM ros:humble-ros-base-jammy AS base
 # Install basic dev tools (And clean apt cache afterwards)
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive \
-        apt -y --quiet --no-install-recommends install \
+        apt-get -y --quiet --no-install-recommends install \
         # Download tool
         curl \
     && rm -rf /var/lib/apt/lists/*
@@ -14,14 +14,15 @@ RUN curl -sSL https://bitbucket.org/DataspeedInc/ros_binaries/raw/master/dataspe
     $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2-dataspeed-public.list > /dev/null'
 
 # Setup Dataspeed rosdep
-RUN sh -c 'echo "yaml http://packages.dataspeedinc.com/ros2/ros-public-'$ROS_DISTRO'.yaml '$ROS_DISTRO'" \
-    > /etc/ros/rosdep/sources.list.d/30-dataspeed-public-'$ROS_DISTRO'.list'
+RUN sh -c "echo \"yaml http://packages.dataspeedinc.com/ros2/ros-public-\$ROS_DISTRO.yaml \$ROS_DISTRO\" \
+    > /etc/ros/rosdep/sources.list.d/30-dataspeed-public-\$ROS_DISTRO.list"
+
 
 # Install basic dev tools (And clean apt cache afterwards)
 RUN apt-get update \
     && rosdep update \
     && DEBIAN_FRONTEND=noninteractive \
-        apt -y --quiet --no-install-recommends install \
+        apt-get -y --quiet --no-install-recommends install \
         # Dataspeed Ford Drive-By-Wire
         ros-"$ROS_DISTRO"-dbw-ford \
         # Dataspeed Power Distribution System
@@ -51,7 +52,7 @@ FROM base AS dev
 # Install basic dev tools (And clean apt cache afterwards)
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive \
-        apt -y --quiet --no-install-recommends install \
+        apt-get -y --quiet --no-install-recommends install \
         # Dbw joystick controller
         ros-"$ROS_DISTRO"-dbw-ford-joystick-demo \
         # Command-line editor
