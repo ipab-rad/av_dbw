@@ -17,27 +17,27 @@
         <remap from="can_bus_3/can_rx" to="$(var can_ns)/can_rx"/>
         <remap from="can_bus_3/can_tx" to="$(var can_ns)/can_tx"/>
         <remap from="can_bus_3/can_err" to="$(var can_ns)/can_err"/>
-        <param name="bitrate_2" value="250000" />
+        <param name="bitrate_2" value="250000"/>
         <param name="bitrate_3" value="500000"/>
-        <!-- SID 0x060 to 0x07F -->
         <!-- <param name="channel_3_mask_0" value="0x800007E0"/>
-        <param name="channel_3_match_0" value="0x00000060"/> -->
-        <!-- SID 0x100 to 0x103 -->
-        <!-- <param name="channel_3_mask_1" value="0x800007FC"/>
-        <param name="channel_3_match_1" value="0x00000100"/> -->
-        <!-- SID 0x6C0 to 0x6C7 -->
-        <!-- <param name="channel_3_mask_2" value="0x800007F8"/>
+        <param name="channel_3_match_0" value="0x00000060"/>
+        <param name="channel_3_mask_1" value="0x800007FC"/>
+        <param name="channel_3_match_1" value="0x00000100"/>
+        <param name="channel_3_mask_2" value="0x800007F8"/>
         <param name="channel_3_match_2" value="0x000006C0"/> -->
 
-        <param name="channel_3_mask_0"  value="0x800007F0" />
-        <param name="channel_3_match_0" value="0x00000060" /> <!-- SID 0x060 to 0x06F -->
-        <param name="channel_3_mask_1"  value="0x800007FC" />
-        <param name="channel_3_match_1" value="0x00000070" /> <!-- SID 0x070 to 0x073 -->
-        <param name="channel_3_mask_2"  value="0x800007FE" />
-        <param name="channel_3_match_2" value="0x00000074" /> <!-- SID 0x074 to 0x075 -->
-        <param name="channel_3_mask_3"  value="0x800007FE" />
-        <param name="channel_3_match_3" value="0x0000007E" /> <!-- SID 0x07E to 0x07F -->
-
+        <param name="channel_3_mask_0" value="0x800007F0"/>
+        <param name="channel_3_match_0" value="0x00000060"/>
+        <!-- SID 0x060 to 0x06F -->
+        <param name="channel_3_mask_1" value="0x800007FC"/>
+        <param name="channel_3_match_1" value="0x00000070"/>
+        <!-- SID 0x070 to 0x073 -->
+        <param name="channel_3_mask_2" value="0x800007FE"/>
+        <param name="channel_3_match_2" value="0x00000074"/>
+        <!-- SID 0x074 to 0x075 -->
+        <param name="channel_3_mask_3" value="0x800007FE"/>
+        <param name="channel_3_match_3" value="0x0000007E"/>
+        <!-- SID 0x07E to 0x07F -->
       </node>
     </group>
     <group unless="$(var filter_can)">
@@ -66,6 +66,7 @@
   <arg name="ackermann_wheelbase" default="2.8498"/>
   <arg name="ackermann_track" default="1.5824"/>
   <arg name="steering_ratio" default="14.8"/>
+
   <group>
     <push-ros-namespace namespace="$(var vehicle_ns)"/>
     <node pkg="dbw_ford_can" exec="dbw_node" output="screen">
@@ -80,10 +81,10 @@
       <param name="steering_ratio" value="$(var steering_ratio)"/>
       <param name="joint_states" value="$(var load_urdf)"/>
     </node>
+
     <node if="$(var ulc)" pkg="dataspeed_ulc_can" exec="ulc_node" output="screen">
       <remap from="can_rx" to="$(var can_ns)/can_rx"/>
       <remap from="can_tx" to="$(var can_ns)/can_tx"/>
     </node>
-    <include if="$(var load_urdf)" file="$(find-pkg-share dbw_ford_description)/launch/mkz.launch.xml"/>
   </group>
 </launch>
