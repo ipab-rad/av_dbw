@@ -6,6 +6,8 @@ RUN apt-get update \
         apt-get -y --quiet --no-install-recommends install \
         # Download tool
         curl \
+        # Install Cyclone DDS ROS RMW
+        ros-"$ROS_DISTRO"-rmw-cyclonedds-cpp \
     && rm -rf /var/lib/apt/lists/*
 
 # Setup Dataspeed apt
@@ -33,6 +35,8 @@ RUN apt-get update \
 ENV ROS_WS /opt/ros_ws
 WORKDIR $ROS_WS
 
+# Set cyclone DDS ROS RMW
+ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 # -----------------------------------------------------------------------
 
