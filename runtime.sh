@@ -13,11 +13,11 @@ fi
 
 # Build docker image only up to base stage
 DOCKER_BUILDKIT=1 docker build \
-    -t av_dbw_launch:latest \
+    -t av_dbw:latest \
     -f Dockerfile --target runtime .
 
 # Run docker image without volumes
 docker run -it --rm --net host --privileged \
     -v /dev/shm:/dev/shm \
     -v /dev/bus/usb:/dev/bus/usb \
-    av_dbw_launch:latest $CMD
+    av_dbw:latest $CMD
