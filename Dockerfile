@@ -20,15 +20,12 @@ RUN sh -c "echo \"yaml http://packages.dataspeedinc.com/ros2/ros-public-\$ROS_DI
     > /etc/ros/rosdep/sources.list.d/30-dataspeed-public-\$ROS_DISTRO.list"
 
 
-# Install basic dev tools (And clean apt cache afterwards)
+# Install Dataspeed Ford Drive-By-Wire ROS driver
 RUN apt-get update \
     && rosdep update \
     && DEBIAN_FRONTEND=noninteractive \
         apt-get -y --quiet --no-install-recommends install \
-        # Dataspeed Ford Drive-By-Wire
         ros-"$ROS_DISTRO"-dbw-ford \
-        # Dataspeed Power Distribution System
-        # ros-noetic-dataspeed-pds-can \
     && rm -rf /var/lib/apt/lists/*
 
 # Setup ROS workspace folder
