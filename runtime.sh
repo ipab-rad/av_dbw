@@ -19,5 +19,6 @@ DOCKER_BUILDKIT=1 docker build \
 # Run docker image without volumes
 docker run -it --rm --net host --privileged \
     -v /dev/shm:/dev/shm \
+    -v /etc/localtime:/etc/localtime:ro \
     -v /dev/bus/usb:/dev/bus/usb \
     av_dbw:latest $CMD
