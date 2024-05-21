@@ -2,8 +2,8 @@
 Changelog for package av_dbw_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2024-05-21)
+------------------
 * Add Cyclone DDS ROS RMW
   - Configure DDS for high msg throughput 
 * Add docker build github workflow
