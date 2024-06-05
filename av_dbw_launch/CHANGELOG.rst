@@ -2,8 +2,8 @@
 Changelog for package av_dbw_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.1.0 (2024-06-05)
+------------------
 * Add bash args to optionally load local cyclone_dds
 * Contributors: Alejandro Bordallo, hect95
 
