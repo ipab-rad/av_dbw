@@ -2,8 +2,8 @@
 Changelog for package av_dbw_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.0.0 (2026-07-14)
+------------------
 * Port Dockerfile to Jazzy/Noble, clone & compile dbw from source (`#31 <https://github.com/ipab-rad/av_dbw/issues/31>`_)
 * Contributors: Alejandro Bordallo Micó
 
